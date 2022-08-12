@@ -16,7 +16,7 @@ export class CatsController {
 
   @Get()
   showMessage(): string {
-    return 'Listening to a Cat';
+    return 'The Cat is on the Table';
   }
 
   @Get('/list')
@@ -24,12 +24,12 @@ export class CatsController {
     return this.catsService.findAll();
   }
 
-  @Get('findV1/:id')
+  @Get('/findV1/:id')
   getOneV1(@Param() params: any): string {
     return `Finding a Cat with id ${params.id}`;
   }
 
-  @Get('findV2/:id')
+  @Get('/findV2/:id')
   getOneV2(@Param('id') id: number): string {
     return `Finding a Cat with id ${id}`;
   }
@@ -44,12 +44,12 @@ export class CatsController {
     return this.catsService.create(cat);
   }
 
-  @Put(':id')
+  @Put('/:id')
   update(@Param('id') id: number, @Body() cat: CreateCatDTO): string {
-    return `Updating a Cat with id ${id} with a new name (${cat.name}) and age (${cat.age})`;
+    return `Updating a Cat of id ${id} with a new name (${cat.name}) and age (${cat.age})`;
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   delete(@Param('id') id: number): string {
     return `Deleting a Cat with id ${id}`;
   }
