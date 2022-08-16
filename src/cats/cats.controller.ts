@@ -34,23 +34,24 @@ export class CatsController {
     return `Finding a Cat with id ${id}`;
   }
 
-  @Post()
-  create(@Body() cat: CreateCatDTO): string {
-    return `Creating a new Cat with ${cat.age} year old named ${cat.name}`;
+  @Get('/:id')
+  findCat(@Param('id') id: number) {
+    return this.catsService.findOne(id);
   }
 
-  @Post('/new')
+  @Post()
   createNewCat(@Body() cat: CreateCatDTO): void {
     return this.catsService.create(cat);
   }
 
   @Put('/:id')
-  update(@Param('id') id: number, @Body() cat: CreateCatDTO): string {
-    return `Updating a Cat of id ${id} with a new name (${cat.name}) and age (${cat.age})`;
+  update(@Param('id') id: number, @Body() cat: CreateCatDTO): void {
+    return this.catsService.Update(id, cat);
   }
 
   @Delete('/:id')
   delete(@Param('id') id: number): string {
-    return `Deleting a Cat with id ${id}`;
+    this.catsService.Remove(id);
+    return 'The Cat was removed';
   }
 }

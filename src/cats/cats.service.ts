@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CatsService {
-  private readonly cats: CreateCatDTO[] = [];
+  private cats: CreateCatDTO[] = [];
 
   create(cat: CreateCatDTO) {
     this.cats.push(cat);
@@ -11,5 +11,18 @@ export class CatsService {
 
   findAll(): CreateCatDTO[] {
     return this.cats;
+  }
+
+  findOne(id: number) {
+    return this.cats.filter((obj: CreateCatDTO) => obj.id === id);
+  }
+
+  Remove(id: number) {
+    const cats_remove = this.cats.filter((obj: CreateCatDTO) => obj.id !== id);
+    this.cats = cats_remove;
+  }
+
+  Update(id: number, createCatDTO: CreateCatDTO) {
+    // return this.cats.map((obj: CreateCatDTO) => {});
   }
 }
