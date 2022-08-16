@@ -1,5 +1,5 @@
 export class CreateDogDTO {
-  id: number;
+  id: string;
   name: string;
   age: number;
 }

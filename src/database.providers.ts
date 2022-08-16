@@ -1,20 +1,21 @@
-// cSpell:ignore typeorm
+import { CreateDogDTO } from './dogs/dto/dogs.dto';
 import { CreateCatDTO } from './cats/dto/cats.dto';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
   {
-    provide: 'DATA_SOURCE',
+    provide: 'NEST001_DATABASE',
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'mysql',
-        host: 'localhost',
+        host: 'nest001-mysql',
         port: 3306,
         username: 'root',
         password: 'admin',
-        database: 'test',
-        entities: [CreateCatDTO],
+        database: 'nest001database',
+        entities: [CreateCatDTO, CreateDogDTO],
         synchronize: true,
+        logging: true,
       });
 
       return dataSource.initialize();

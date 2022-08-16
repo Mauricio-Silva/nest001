@@ -24,33 +24,25 @@ export class DogsController {
     return this.dogsService.findAll();
   }
 
-  @Get('/findV1/:id')
-  getOneV1(@Param() params: any): string {
-    return `Finding a Dog with id  ${params.id}`;
-  }
-
-  @Get('/findV2/:id')
-  getOneV2(@Param('id') id: number): string {
-    return `Finding a Dog with id ${id}`;
+  @Get('/:id')
+  findDog(@Param('id') id: string) {
+    return this.dogsService.findOne(id);
   }
 
   @Post()
-  create(@Body() dog: CreateDogDTO): string {
-    return `Creating a new Dog with ${dog.age} year old named ${dog.name}`;
-  }
-
-  @Post('/new')
-  createNewDog(@Body() dog: CreateDogDTO): void {
-    return this.dogsService.create(dog);
+  createNewDog(@Body() dog: CreateDogDTO): string {
+    this.dogsService.create(dog);
+    return 'A New Dog was Created';
   }
 
   @Put('/:id')
-  update(@Param('id') id: number, @Body() dog: CreateDogDTO): string {
-    return `Updating a Dog of id ${id} with a new name (${dog.name}) and age (${dog.age})`;
+  update(@Param('id') id: string, @Body() dog: CreateDogDTO) {
+    return this.dogsService.update(id, dog);
   }
 
   @Delete('/:id')
-  delete(@Param('id') id: number): string {
-    return `Deleting a Dog with id ${id}`;
+  delete(@Param('id') id: string): string {
+    this.dogsService.remove(id);
+    return 'The Dog was Removed';
   }
 }

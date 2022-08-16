@@ -1,11 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class CreateCat {
+export class CreateDog {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ length: 50 })
+  @Column('text')
   name: string;
 
   @Column('int')

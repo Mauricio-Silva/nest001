@@ -13,16 +13,22 @@ export class CatsService {
     return this.cats;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.cats.filter((obj: CreateCatDTO) => obj.id === id);
   }
 
-  Remove(id: number) {
-    const cats_remove = this.cats.filter((obj: CreateCatDTO) => obj.id !== id);
+  remove(id: string) {
+    const cats_remove = this.cats.filter((obj: CreateCatDTO) => obj.id != id);
     this.cats = cats_remove;
   }
 
-  Update(id: number, createCatDTO: CreateCatDTO) {
-    // return this.cats.map((obj: CreateCatDTO) => {});
+  update(id: string, createCatDTO: CreateCatDTO) {
+    this.cats.map((obj: CreateCatDTO) => {
+      if (obj.id === id) {
+        obj.name = createCatDTO.name;
+        obj.age = createCatDTO.age;
+      }
+    });
+    return this.findOne(id);
   }
 }

@@ -24,34 +24,25 @@ export class CatsController {
     return this.catsService.findAll();
   }
 
-  @Get('/findV1/:id')
-  getOneV1(@Param() params: any): string {
-    return `Finding a Cat with id ${params.id}`;
-  }
-
-  @Get('/findV2/:id')
-  getOneV2(@Param('id') id: number): string {
-    return `Finding a Cat with id ${id}`;
-  }
-
   @Get('/:id')
-  findCat(@Param('id') id: number) {
+  findCat(@Param('id') id: string) {
     return this.catsService.findOne(id);
   }
 
   @Post()
-  createNewCat(@Body() cat: CreateCatDTO): void {
-    return this.catsService.create(cat);
+  createNewCat(@Body() cat: CreateCatDTO): string {
+    this.catsService.create(cat);
+    return 'A New Cat was Created';
   }
 
   @Put('/:id')
-  update(@Param('id') id: number, @Body() cat: CreateCatDTO): void {
-    return this.catsService.Update(id, cat);
+  updateCat(@Param('id') id: string, @Body() cat: CreateCatDTO) {
+    return this.catsService.update(id, cat);
   }
 
   @Delete('/:id')
-  delete(@Param('id') id: number): string {
-    this.catsService.Remove(id);
-    return 'The Cat was removed';
+  deleteCat(@Param('id') id: string): string {
+    this.catsService.remove(id);
+    return 'The Cat was Removed';
   }
 }
