@@ -25,21 +25,24 @@ let CatsService = class CatsService {
     async findAll() {
         return this.catsRepository.find();
     }
-    findOne(id) {
-        return this.cats.filter((obj) => obj.id === id);
-    }
-    remove(id) {
-        const cats_remove = this.cats.filter((obj) => obj.id != id);
-        this.cats = cats_remove;
-    }
-    update(id, createCatDTO) {
-        this.cats.map((obj) => {
-            if (obj.id === id) {
-                obj.name = createCatDTO.name;
-                obj.age = createCatDTO.age;
-            }
+    async findOne(catId) {
+        return this.catsRepository.findOne({
+            where: {
+                id: catId,
+            },
         });
-        return this.findOne(id);
+    }
+    remove(catId) {
+        this.catsRepository.delete({ id: catId });
+    }
+    async update(catId, cat) {
+        this.catsRepository.update({
+            id: catId,
+        }, {
+            name: cat.name,
+            age: cat.age,
+        });
+        return this.findOne(catId);
     }
 };
 CatsService = __decorate([

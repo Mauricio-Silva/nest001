@@ -1,5 +1,5 @@
 import { CatsService } from './cats.service';
-import { CreateCatDTO } from './dto/cats.dto';
+import { Cat } from './entity/create.cat';
 import {
   Body,
   Controller,
@@ -9,7 +9,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateCat } from './entity/create.cat';
 
 @Controller('cats')
 export class CatsController {
@@ -21,23 +20,23 @@ export class CatsController {
   }
 
   @Get('/list')
-  findAll(): Promise<CreateCat[]> {
+  findAll(): Promise<Cat[]> {
     return this.catsService.findAll();
   }
 
   @Get('/:id')
-  findCat(@Param('id') id: string) {
+  findCat(@Param('id') id: string): Promise<Cat> {
     return this.catsService.findOne(id);
   }
 
   @Post()
-  createNewCat(@Body() cat: CreateCatDTO): string {
+  createCat(@Body() cat: Cat): string {
     this.catsService.create(cat);
     return 'A New Cat was Created';
   }
 
   @Put('/:id')
-  updateCat(@Param('id') id: string, @Body() cat: CreateCatDTO) {
+  updateCat(@Param('id') id: string, @Body() cat: Cat): Promise<Cat> {
     return this.catsService.update(id, cat);
   }
 

@@ -5,9 +5,9 @@ export class Cat {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ length: 50 })
+  @Column()
   name: string;
 
-  @Column('int')
+  @Column()
   age: number;
 }

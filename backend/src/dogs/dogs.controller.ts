@@ -1,4 +1,4 @@
-import { CreateDogDTO } from './dto/dogs.dto';
+import { Dog } from './entity/create.dog';
 import { DogsService } from './dogs.service';
 import {
   Body,
@@ -20,28 +20,28 @@ export class DogsController {
   }
 
   @Get('/list')
-  findAll(): CreateDogDTO[] {
+  findAll(): Promise<Dog[]> {
     return this.dogsService.findAll();
   }
 
   @Get('/:id')
-  findDog(@Param('id') id: string) {
+  findDog(@Param('id') id: string): Promise<Dog> {
     return this.dogsService.findOne(id);
   }
 
   @Post()
-  createNewDog(@Body() dog: CreateDogDTO): string {
+  createDog(@Body() dog: Dog): string {
     this.dogsService.create(dog);
     return 'A New Dog was Created';
   }
 
   @Put('/:id')
-  update(@Param('id') id: string, @Body() dog: CreateDogDTO) {
+  updateDog(@Param('id') id: string, @Body() dog: Dog): Promise<Dog> {
     return this.dogsService.update(id, dog);
   }
 
   @Delete('/:id')
-  delete(@Param('id') id: string): string {
+  deleteDog(@Param('id') id: string): string {
     this.dogsService.remove(id);
     return 'The Dog was Removed';
   }

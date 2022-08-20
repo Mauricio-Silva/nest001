@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDog = void 0;
+exports.Dog = void 0;
 const typeorm_1 = require("typeorm");
-let CreateDog = class CreateDog {
+let Dog = class Dog {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", String)
-], CreateDog.prototype, "id", void 0);
+], Dog.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)('text'),
     __metadata("design:type", String)
-], CreateDog.prototype, "name", void 0);
+], Dog.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)('int'),
     __metadata("design:type", Number)
-], CreateDog.prototype, "age", void 0);
-CreateDog = __decorate([
+], Dog.prototype, "age", void 0);
+Dog = __decorate([
     (0, typeorm_1.Entity)()
-], CreateDog);
-exports.CreateDog = CreateDog;
+], Dog);
+exports.Dog = Dog;
 //# sourceMappingURL=create.dog.js.map

@@ -18,11 +18,11 @@ __decorate([
     __metadata("design:type", String)
 ], Cat.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 50 }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Cat.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)('int'),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Cat.prototype, "age", void 0);
 Cat = __decorate([

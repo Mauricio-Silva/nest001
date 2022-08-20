@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.databaseProviders = void 0;
-const dogs_dto_1 = require("./dogs/dto/dogs.dto");
-const cats_dto_1 = require("./cats/dto/cats.dto");
+const create_dog_1 = require("./dogs/entity/create.dog");
+const create_cat_1 = require("./cats/entity/create.cat");
 const typeorm_1 = require("typeorm");
 exports.databaseProviders = [
     {
@@ -15,7 +15,7 @@ exports.databaseProviders = [
                 username: 'root',
                 password: 'admin',
                 database: 'animals',
-                entities: [cats_dto_1.CreateCatDTO, dogs_dto_1.CreateDogDTO],
+                entities: [create_cat_1.Cat, create_dog_1.Dog],
                 synchronize: true,
                 logging: true,
             });

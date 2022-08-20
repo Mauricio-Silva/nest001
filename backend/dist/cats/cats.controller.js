@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatsController = void 0;
 const cats_service_1 = require("./cats.service");
-const cats_dto_1 = require("./dto/cats.dto");
+const create_cat_1 = require("./entity/create.cat");
 const common_1 = require("@nestjs/common");
 let CatsController = class CatsController {
     constructor(catsService) {
@@ -29,7 +29,7 @@ let CatsController = class CatsController {
     findCat(id) {
         return this.catsService.findOne(id);
     }
-    createNewCat(cat) {
+    createCat(cat) {
         this.catsService.create(cat);
         return 'A New Cat was Created';
     }
@@ -58,22 +58,22 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CatsController.prototype, "findCat", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [cats_dto_1.CreateCatDTO]),
+    __metadata("design:paramtypes", [create_cat_1.Cat]),
     __metadata("design:returntype", String)
-], CatsController.prototype, "createNewCat", null);
+], CatsController.prototype, "createCat", null);
 __decorate([
     (0, common_1.Put)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, cats_dto_1.CreateCatDTO]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, create_cat_1.Cat]),
+    __metadata("design:returntype", Promise)
 ], CatsController.prototype, "updateCat", null);
 __decorate([
     (0, common_1.Delete)('/:id'),

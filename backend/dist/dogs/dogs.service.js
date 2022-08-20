@@ -18,29 +18,31 @@ const typeorm_1 = require("typeorm");
 let DogsService = class DogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
-        this.dogs = [];
     }
     create(dog) {
-        this.dogs.push(dog);
+        this.dogsRepository.save(dog);
     }
-    findAll() {
-        return this.dogs;
+    async findAll() {
+        return this.dogsRepository.find();
     }
-    findOne(id) {
-        return this.dogs.filter((obj) => obj.id === id);
-    }
-    remove(id) {
-        const dogs_remove = this.dogs.filter((obj) => obj.id !== id);
-        this.dogs = dogs_remove;
-    }
-    update(id, createDogDTO) {
-        this.dogs.map((obj) => {
-            if (obj.id === id) {
-                obj.name = createDogDTO.name;
-                obj.age = createDogDTO.age;
-            }
+    async findOne(dogId) {
+        return this.dogsRepository.findOne({
+            where: {
+                id: dogId,
+            },
         });
-        return this.findOne(id);
+    }
+    remove(dogId) {
+        this.dogsRepository.delete({ id: dogId });
+    }
+    async update(dogId, dog) {
+        this.dogsRepository.update({
+            id: dogId,
+        }, {
+            name: dog.name,
+            age: dog.age,
+        });
+        return this.findOne(dogId);
     }
 };
 DogsService = __decorate([

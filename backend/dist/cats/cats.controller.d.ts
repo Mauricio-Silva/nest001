@@ -1,13 +1,12 @@
 import { CatsService } from './cats.service';
-import { CreateCatDTO } from './dto/cats.dto';
-import { CreateCat } from './entity/create.cat';
+import { Cat } from './entity/create.cat';
 export declare class CatsController {
     private catsService;
     constructor(catsService: CatsService);
     showMessage(): string;
-    findAll(): Promise<CreateCat[]>;
-    findCat(id: string): any;
-    createNewCat(cat: CreateCatDTO): string;
-    updateCat(id: string, cat: CreateCatDTO): any;
+    findAll(): Promise<Cat[]>;
+    findCat(id: string): Promise<Cat>;
+    createCat(cat: Cat): string;
+    updateCat(id: string, cat: Cat): Promise<Cat>;
     deleteCat(id: string): string;
 }

@@ -13,7 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DogsController = void 0;
-const dogs_dto_1 = require("./dto/dogs.dto");
+const create_dog_1 = require("./entity/create.dog");
 const dogs_service_1 = require("./dogs.service");
 const common_1 = require("@nestjs/common");
 let DogsController = class DogsController {
@@ -29,14 +29,14 @@ let DogsController = class DogsController {
     findDog(id) {
         return this.dogsService.findOne(id);
     }
-    createNewDog(dog) {
+    createDog(dog) {
         this.dogsService.create(dog);
         return 'A New Dog was Created';
     }
-    update(id, dog) {
+    updateDog(id, dog) {
         return this.dogsService.update(id, dog);
     }
-    delete(id) {
+    deleteDog(id) {
         this.dogsService.remove(id);
         return 'The Dog was Removed';
     }
@@ -51,37 +51,37 @@ __decorate([
     (0, common_1.Get)('/list'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Array)
+    __metadata("design:returntype", Promise)
 ], DogsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], DogsController.prototype, "findDog", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [dogs_dto_1.CreateDogDTO]),
+    __metadata("design:paramtypes", [create_dog_1.Dog]),
     __metadata("design:returntype", String)
-], DogsController.prototype, "createNewDog", null);
+], DogsController.prototype, "createDog", null);
 __decorate([
     (0, common_1.Put)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, dogs_dto_1.CreateDogDTO]),
-    __metadata("design:returntype", void 0)
-], DogsController.prototype, "update", null);
+    __metadata("design:paramtypes", [String, create_dog_1.Dog]),
+    __metadata("design:returntype", Promise)
+], DogsController.prototype, "updateDog", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", String)
-], DogsController.prototype, "delete", null);
+], DogsController.prototype, "deleteDog", null);
 DogsController = __decorate([
     (0, common_1.Controller)('dogs'),
     __metadata("design:paramtypes", [dogs_service_1.DogsService])
