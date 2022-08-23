@@ -1,11 +1,13 @@
 import { Cat } from './entity/create.cat';
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CatsService {
   constructor(
-    @Inject('CATS_REPOSITORY') private catsRepository: Repository<Cat>,
+    @InjectRepository(Cat)
+    private catsRepository: Repository<Cat>,
   ) {}
 
   create(cat: Cat): void {
@@ -13,19 +15,15 @@ export class CatsService {
   }
 
   async findAll(): Promise<Cat[]> {
-    return this.catsRepository.find();
+    return await this.catsRepository.find();
   }
 
-  async findOne(catId: string): Promise<Cat> {
-    return this.catsRepository.findOne({
-      where: {
-        id: catId,
-      },
-    });
+  async findOne(id: string): Promise<Cat> {
+    return await this.catsRepository.findOneBy({ id });
   }
 
-  remove(catId: string): void {
-    this.catsRepository.delete({ id: catId });
+  async remove(id: string) {
+    return await this.catsRepository.delete({ id });
   }
 
   async update(catId: string, cat: Cat): Promise<Cat> {

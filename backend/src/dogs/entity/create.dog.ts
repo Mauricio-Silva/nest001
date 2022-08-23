@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Dog {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn() // ('uuid)
   id: string;
 
   @Column('text')

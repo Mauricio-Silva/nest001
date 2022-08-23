@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatsController = void 0;
 const cats_service_1 = require("./cats.service");
@@ -51,14 +52,14 @@ __decorate([
     (0, common_1.Get)('/list'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
 ], CatsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
 ], CatsController.prototype, "findCat", null);
 __decorate([
     (0, common_1.Post)(),
@@ -73,7 +74,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, create_cat_1.Cat]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
 ], CatsController.prototype, "updateCat", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
